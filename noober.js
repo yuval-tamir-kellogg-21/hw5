@@ -69,5 +69,114 @@ function renderRides(ridesArray) {
 
 window.addEventListener('DOMContentLoaded', function() {
   // YOUR CODE
+
+  //1. All Rides event listener
+  let allRidesButton = document.querySelector('#all-filter')
+  allRidesButton.addEventListener('click', async function(event) {
+    event.preventDefault()
+    console.log('Clicked "All Rides"')
+    //2.1 request the ride data from our "API"
+    let url = 'https://kiei451.com/api/rides.json'
+    let response = await fetch(url)
+    let json = await response.json()
+    // console.log(json)
+    //2.2 pass the array of rides to renderRides()
+    renderRides(json)
+  })
+
+  //3. Noober Purple Event listener
+  let nooberPurpleButton = document.querySelector('#noober-purple-filter')
+  nooberPurpleButton.addEventListener('click', async function(event) {
+    event.preventDefault()
+    console.log('Clicked "Noober Purple"')
+    //4.1 request the ride data from our "API"
+    let url = 'https://kiei451.com/api/rides.json'
+    let response = await fetch(url)
+    let json = await response.json()
+    // console.log(json)
+    //4.2 create a new empty array
+    var newArray = []
+    // console.log(newArray)
+    //4.3 loop through the rides 
+    for(i=0; i<json.length; i++) {
+    // and for each ride, use the provided levelOfService() function to determine the service level, 
+    let rideFilter = levelOfService(json[i])
+    //and use newArray.push(ride) to add "Noober Purple" rides into the new array
+    if(rideFilter == "Noober Purple") {
+      newArray.push(json[i])
+    }
+    //4.4 pass the new array of filtered rides to the renderRides() function
+    renderRides(newArray)
+    }
+  })
+
+
+    //Noober Pool Event listener
+    let nooberPoolButton = document.querySelector('#noober-pool-filter')
+    nooberPoolButton.addEventListener('click', async function(event) {
+      event.preventDefault()
+      console.log('Clicked "Noober Pool"')
+      //request the ride data from our "API"
+      let url = 'https://kiei451.com/api/rides.json'
+      let response = await fetch(url)
+      let json = await response.json()
+      // create a new empty array
+      var newArray = []
+      //loop through the rides, determine LoS, push into newArray
+      for(i=0; i<json.length; i++) {
+      let rideFilter = levelOfService(json[i])
+      if(rideFilter == "Noober Pool") {
+        newArray.push(json[i])
+      }
+      //pass the new array of filtered rides to the renderRides() function
+      renderRides(newArray)
+      }
+    })
+
+
+        //Noober XL Event listener
+        let nooberXLButton = document.querySelector('#noober-xl-filter')
+        nooberXLButton.addEventListener('click', async function(event) {
+          event.preventDefault()
+          console.log('Clicked "Noober XL"')
+          //request the ride data from our "API"
+          let url = 'https://kiei451.com/api/rides.json'
+          let response = await fetch(url)
+          let json = await response.json()
+          // create a new empty array
+          var newArray = []
+          //loop through the rides, determine LoS, push into newArray
+          for(i=0; i<json.length; i++) {
+          let rideFilter = levelOfService(json[i])
+          if(rideFilter == "Noober XL") {
+            newArray.push(json[i])
+          }
+          //pass the new array of filtered rides to the renderRides() function
+          renderRides(newArray)
+          }
+        })
+
+        //Noober X Event listener
+        let nooberXButton = document.querySelector('#noober-x-filter')
+        nooberXButton.addEventListener('click', async function(event) {
+          event.preventDefault()
+          console.log('Clicked "Noober X"')
+          //request the ride data from our "API"
+          let url = 'https://kiei451.com/api/rides.json'
+          let response = await fetch(url)
+          let json = await response.json()
+          // create a new empty array
+          var newArray = []
+          //loop through the rides, determine LoS, push into newArray
+          for(i=0; i<json.length; i++) {
+          let rideFilter = levelOfService(json[i])
+          if(rideFilter == "Noober X") {
+            newArray.push(json[i])
+          }
+          //pass the new array of filtered rides to the renderRides() function
+          renderRides(newArray)
+          }
+        })
+
 })
 
